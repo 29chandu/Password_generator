@@ -1,46 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'generator/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
-</head>
 
-<body>
-    <h1>Generate a password</h1>
+{% block content %}
+<h1>Generate a password</h1>
 
-    <form action="{% url 'password' %}">
-        {% csrf_token %}
+<form action="{% url 'password' %}">
+    {% csrf_token %}
 
-        <select name="length" id="length">
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9" selected='selected'>9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-        </select>
-        <label for="length">Password Length</label>
+    <select name="length" id="length">
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9" selected='selected'>9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+    </select>
+    <label for="length">Password Length</label>
 
-        <br>
-        <input type="checkbox" name="letters">
-        <label for="letters">Letters</label>
+    <br>
+    <input type="checkbox" name="letters">
+    <label for="letters">Letters</label>
 
-        <br>
-        <input type="checkbox" name="numbers">
-        <label for="numbers">Numbers</label>
+    <br>
+    <input type="checkbox" name="numbers">
+    <label for="numbers">Numbers</label>
 
-        <br>
-        <input type="checkbox" name="special">
-        <label for="special">Special Characters</label>
+    <br>
+    <input type="checkbox" name="special">
+    <label for="special">Special Characters</label>
 
-        <br>
-        <input type="submit" value="Generate Password">
-    </form>
-</body>
+    <br>
+    <input type="submit" value="Generate Password">
+</form>
 
-</html>
+{% endblock content %}
