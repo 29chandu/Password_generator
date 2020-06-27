@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main-div {
+    width: fit-content;
+    height: fit-content;
+
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+    margin: auto;
+    /* background-color: violet; */
+}
+
+.sub-button {
+    /* background-color: lawngreen; */
+}
+
+.form-div {
+    /* background-color: seagreen; */
+}

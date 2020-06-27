@@ -1,39 +1,73 @@
 {% extends 'generator/base.html' %}
-
+{% load static %}
 
 {% block content %}
-<h1>Generate a password</h1>
+<div class="container main-div">
+    <h1 class="display-4">Generate A Password</h1>
 
-<form action="{% url 'password' %}">
-    {% csrf_token %}
+    <div class="form-div">
+        <form action="{% url 'password' %}" class="mx-auto col-6" id="pass-form">
 
-    <select name="length" id="length">
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9" selected='selected'>9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-    </select>
-    <label for="length">Password Length</label>
+            <div class="form-group row">
+                <!-- <label for="length" class="col-sm-4 col-form-label">Password Length</label> -->
+                <select name="length" id="length" class="custom-select">
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9" selected='selected'>Password Length (default 9)</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                </select>
+            </div>
 
-    <br>
-    <input type="checkbox" name="letters">
-    <label for="letters">Letters</label>
+            <div class="form-group form-check">
+                <input type="checkbox" name="letters" class="form-check-input" id="letters">
+                <label for="letters" class="form-check-label">Letters</label>
+            </div>
 
-    <br>
-    <input type="checkbox" name="numbers">
-    <label for="numbers">Numbers</label>
+            <div class="form-group form-check">
+                <input type="checkbox" name="numbers" class="form-check-input" id="numbers">
+                <label for="numbers" class="form-check-label">Numbers</label>
+            </div>
 
-    <br>
-    <input type="checkbox" name="special">
-    <label for="special">Special Characters</label>
+            <div class="form-group form-check">
+                <input type="checkbox" name="special" class="form-check-input" id="special">
+                <label for="special" class="form-check-label">Special Characters</label>
+            </div>
+        </form>
+        <div class="mx-auto sub-button col-6">
+            <button class="btn btn-primary col" onclick="submit_pass_form()">Generate Password</button>
+        </div>
+    </div>
+</div>
 
-    <br>
-    <input type="submit" value="Generate Password">
-</form>
+<script>
+    function is_at_least_checkbox_checked() {
+        checked_box = false
+        var checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+        for (var i = 0; i < checkBoxes.length; i++) {
+            console.log(i)
+            if (checkBoxes[i].checked) {
+                checked_box = true
+                break;
+            }
+        }
+        return checked_box
+    }
 
+    function submit_pass_form() {
+        if (is_at_least_checkbox_checked()) {
+            document.getElementById('pass-form').submit();
+        } else {
+            window.alert('Please select atleast one of the checkboxes!')
+        }
+    }
+
+    if (is_at_least_checkbox_checked() === false) {
+        document.getElementById('letters').checked = true;
+    }
+</script>
 {% endblock content %}

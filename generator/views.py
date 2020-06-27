@@ -22,16 +22,19 @@ def generate_password_view(request):
     numbers = list('0123456789')
 
     total_chars = []
-    # if add_letters:
-    total_chars.extend(all_letters)
+    if add_letters:
+        total_chars.extend(all_letters)
     if add_special:
         total_chars.extend(special_chars)
     if add_numbers:
         total_chars.extend(numbers)
 
     password = ''
-    for i in range(pass_length):
-        password += random.choice(total_chars)
+    if len(total_chars) > 0:
+        for i in range(pass_length):
+            password += random.choice(total_chars)
+    else:
+        password = 'Please select at least letters, numbers or special characters'
 
     context = {'password': password}
     return render(request, 'generator/password.html', context=context)
